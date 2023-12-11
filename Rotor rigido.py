@@ -1,4 +1,5 @@
 from math import *
+import math
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -26,11 +27,11 @@ print('')
 print('La grafica de las funciones de onda es:')
 
 
-f_r= lambda m,phi:sqrt(1/2)*np.cos(m*phi) #parte real 
-f_i= lambda m,phi:sqrt(1/2)*np.sin(m*phi) #parte imaginaria   
+f_r= lambda m,phi:math.sqrt(1/2)*np.cos(m*phi) #parte real 
+f_i= lambda m,phi:math.sqrt(1/2)*np.sin(m*phi) #parte imaginaria   
 
-for i in range(n):    
-    x= np.arange(0,2*pi,0.01)
+for i in range(4):    
+    x= np.arange(0,2*math.pi,0.01)
     y1= f_r(i,x)    
     y2= f_i(i,x)
     plt.plot(x,y1)
