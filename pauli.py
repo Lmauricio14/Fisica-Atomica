@@ -5,9 +5,13 @@ Created on Thu Oct 19 14:24:29 2023
 @author: jorgi
 """
 
+"""
+Programa que nos ayudará a evaluar matrices de Pauli
+"""
 import numpy as np
 import sympy as sp
 
+#Definimos las matrices de Pauli de 2x2
 sx=sp.Matrix([[0,1],
               [1,0]])
 sy=sp.Matrix([[0, -sp.I],
@@ -15,6 +19,7 @@ sy=sp.Matrix([[0, -sp.I],
 sz=sp.Matrix([[1,0],
               [0,-1]])
 
+#También los vectores para los spines
 up=sp.Matrix([1,0])
 down=sp.Matrix([0,1])
 
