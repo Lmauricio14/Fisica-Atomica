@@ -1,9 +1,3 @@
-"""
-Created on Tue Nov 28 07:11:42 2023
-
-@author: Rudy
-"""
-
 from sympy import symbols, Matrix
 from sympy.abc import x, y, z
 import numpy as np
@@ -22,7 +16,7 @@ El último elemento del renglón indica x, y, z Rx, Ry o Rz
 0=null, 1= x, y ó z, 2 = Rx, Ry ó Rz, 3 = xi o Ri
 """
 # Definir los datos para cada tabla
-data_c2v = {
+tabla_c2v = {
     'NC': [1, 1, 1, 1, 0],
     'A₁': [1, 1, 1, 1, 1],
     'A₂': [1, 1, -1, -1, 2],
@@ -30,14 +24,14 @@ data_c2v = {
     'B₂': [1, -1, -1, 1, 3]
 }
 
-data_c3v = {
+tabla_c3v = {
     'NC': [1, 2, 3, 0],
     'A₁': [1, 1, 1, 1],
     'A₂': [1, 1, -1, 2],
     'E': [2, -1, 0, 3]
 }
 
-data_c4v = {
+tabla_c4v = {
     'NC': [1, 2, 1, 2, 2, 0],
     'A₁': [1, 1, 1, 1, 1, 1],
     'A₂': [1, 1, 1, -1, -1, 2],
@@ -114,7 +108,7 @@ def graficar_molecula(coor_esf, title='Molécula', ac_label='C', ar_label='H'):
         ax.plot([atom_central[0], h[0]], [atom_central[1], h[1]], [atom_central[2], h[2]], c='b')
 
     # Etiquetas de los átomos
-    ax.text(*nitrógeno, ac_label, fontsize=14, color='k', ha='left')
+    ax.text(*atom_central, ac_label, fontsize=14, color='k', ha='left')
     for i, h in enumerate(coordenadas):
         ax.text(*h, ar_label+f'{i + 1}'.translate(SUB), fontsize=14, color='k', ha='left')
 
@@ -221,9 +215,9 @@ def operaciones_simetria_c2v(molec_c2v, n, molec_name, ac, ar):
     molec_c2v_c2 = cn(2,molec_c2v)
     graficar_molecula(molec_c2v_c2, title='Molécula '+molec_name+' C₂', ac_label = ac, ar_label = ar)
     molec_c2v_xz = sigma('xz',molec_c2v)
-    graficar_molecula(molec_c2v_xz, title='Molécula '+molec_name+' σ_v', ac_label = ac, ar_label = ar)
+    graficar_molecula(molec_c2v_xz, title='Molécula '+molec_name+' σ_xz', ac_label = ac, ar_label = ar)
     molec_c2v_yz = sigma('yz',molec_c2v)
-    graficar_molecula(molec_c2v_yz, title='Molécula '+molec_name+' σ_d', ac_label = ac, ar_label = ar)
+    graficar_molecula(molec_c2v_yz, title='Molécula '+molec_name+' σ_yz', ac_label = ac, ar_label = ar)
     
     xyz_c2v_c2 = esfer_to_xyz(molec_c2v_c2)
     xyz_c2v_sxz = esfer_to_xyz(molec_c2v_xz)
@@ -289,20 +283,3 @@ def c2v_main(molecule, n_atomos, molec_label,c,r):
 c4v_main(coor_XeOF4, 6, "XeOF₄",'O','F')
 c4v_main(coor_NH4, 5, "NH₄",'N','H')
 c2v_main(coor_H2O, 3, 'H₂O','O','H')
-
-"""
-g_pxpypz = [12,0,0,2,0] 
-aRI_pxpypz = aRI(g_pxpypz,'px,py,pz', c4v)
-g_pz = [4,0,0,2,0]
-aRI_pz = aRI(g_pz,'pz',c4v)
-"""
-
-"""
-px, py, pz = symbols('px py pz')
-def proyeccion(RI):
-    N = int(RI[0]/n)
-    return 0
-
-g_1sa_1sb = [2,0,0,2]
-aRI_1sa_1sb = aRI(g_pz,'pz',c2v)
-"""
